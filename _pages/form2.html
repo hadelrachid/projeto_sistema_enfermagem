@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../_css/styles_form2.css">
+    <title>Gerar Tabela Dinâmica</title>
+</head>
+<body>
+    <!-- Imagem do Logo da Prefeitura --> 
+    <div id="header">
+        <div>
+            <img src="../_image/logo.png" alt="Logo">
+        </div>
+        <div>
+            <h2>EVOLUÇÃO DE ENFERMAGEM</h2>
+        </div>
+    </div>
+    <div>
+        <button class="btn" id="btn" onclick="addRow()">Adicionar Linha</button>
+    </div>
+    <fieldset>
+    <legend>Gerar Tabela Dinâmica</legend>
+    <label for="rowCountInput">Número de Linhas:</label>
+    <input type="number" id="rowCountInput" name="rowCountInput" min="0" max="48" value="1" readonly>
+    <table id="editableTable">
+        <thead>
+            <tr>
+                <th>Hora-Data</th>
+                <th>Ocorrência</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="datetime-local" id="datetime_local_1" name="datetime_local_[]" value="" ></td>
+                <td><input type="text" id="occurrence_1" name="occurrence_[]" value="Ocorrência 1"></td>
+                <td><button onclick="removeRow(this)">Remover</button></td>
+            </tr>
+        </tbody>
+    </table>
+    </fieldset>
+    <!-- scripts -->
+    <script src="../_scripts/scripts_form2.js"></script>
+</body>
+</html>

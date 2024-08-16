@@ -1,0 +1,238 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.a4-portrait {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 1px;
+    width: 250mm;/* A4 width */
+    height: 330mm;/* A4 height */
+    margin: 0 auto;
+    border: 1px solid black;
+    padding: 2px;
+}
+
+.header, .section, .full-width, .signature {
+    grid-column: span 1;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.header {
+    display: flex;
+    text-align: center;
+    border: 1px solid white;
+    padding: 5px;
+    align-items: center;
+}
+
+/* Deixa os itens centralizados no cabeçalho - logo, título e um espaçamento */
+#div-city-hall, #div-title-main, #div-gap-1 {
+    flex: auto;
+    margin: 2px;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Joga a imagem mais para a esquerda do layout */
+#div-city-hall {
+    text-align: left;
+}
+
+/* Diminui o logo da prefeitura para 60% do tamanho original */
+#div-city-hall > img{
+    width: 35%;
+}
+
+.half-section {
+    grid-column: span 1;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.field-unidade {
+    grid-column: span 1;
+    margin: 5px;
+}
+
+.field-fieldset {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 2px;
+    padding: 1px;
+}
+
+.width_field{
+    width: 45%;
+}
+
+.field {
+    flex: auto;
+    margin: 3px 3px;
+    padding: 0 3px;
+}
+
+h2 {
+    margin: 0;
+    font-size: 1em;
+}
+
+legend {
+    font-size: 0.9em;
+    font-weight: bold;
+    border: 1px solid #333; /* Aqui você pode ajustar a espessura e a cor da borda */
+    padding: 2px; /* Opcional: adicione algum espaço interno para melhorar a aparência */
+    margin-bottom: 2px;
+    background-color: lightgray; /* Aqui você pode usar o código hexadecimal da cor que preferir */
+    width: 100%;
+}
+
+table, tr, td {
+    width: 100%;
+    border-collapse: collapse;
+    border-bottom: 1px solid black;
+    padding: 8px;
+}
+
+.small-text {
+    font-size: 0.61em;
+}
+
+.signature {
+    margin-top: 5px;
+}
+
+.header-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-title h2 {
+    flex: 1;
+    text-align: center;
+}
+.header-title div:last-child {
+    flex: none;
+}
+
+.field-stamp {
+    width: 230px;
+    height: 110px;
+    margin: 5px 10px;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+select, #date-field, #birth_date {
+    border: none;
+    outline: none; /* Remove o contorno quando o select está em foco */
+    -webkit-appearance: none; /* Remove a aparência padrão no WebKit */
+    -moz-appearance: none; /* Remove a aparência padrão no Firefox */
+    appearance: none; /* Remove a aparência padrão nos navegadores modernos */
+    margin: 0 1px;
+    padding: 0 1px;
+    font-weight: bold;       
+}
+
+textarea{
+    border: none;
+    outline: none;
+    width: 100%;
+    resize: none;
+}
+
+.text, .number {
+    border: none;
+    border-bottom: 1px solid #000; /* Cor da linha */
+    outline: none;
+}
+
+input[type="radio"]{
+    appearance: none; /* Remove o estilo padrão do sistema */
+    -webkit-appearance: none; /* Para navegadores baseados em WebKit (como o Chrome) */
+    width: 0.5em;
+    height: 0.5em;
+    border: 0.25em solid transparent; /* Contorno da bolinha */
+    border-radius: 50%; /* Torna a bolinha circular */
+    background-color: transparent; /* Torna a bolinha não selecionada invisível */
+    text-align: center;
+    margin: 0 auto;
+}
+
+input[type="radio"]:checked {
+    background-color: black;
+    border-color: black;
+}
+
+input[type="checkbox"]{
+    appearance: none; /* Remove o estilo padrão do sistema */
+    -webkit-appearance: none; /* Para navegadores baseados em WebKit (como o Chrome) */
+    width: 0.5em;
+    height: 0.5em;
+    border: 0.25em solid transparent; /* Contorno da bolinha */
+    border-radius: 30%; /* Torna a bolinha circular */
+    background-color: transparent; /* Torna a bolinha não selecionada invisível */
+    text-align: center;
+    margin: 0 auto;
+}
+
+input[type="checkbox"]:checked {
+    background-color: black;
+    border-color: black;
+}
+
+.savePdfButton{
+    height: 30px;
+    width: 100px;
+    font-size: 10px;
+    font-weight: bold;
+    border: solid 1px blue;
+    border-radius: 20px;
+    color: yellow;
+    background-color: darkblue;
+    transition: background-color 0.5s ease, color 0.5s ease, transform 0.5s ease;
+}
+
+.savePdfButton:hover {
+    background-color: blue;
+    color: white;
+    transform: scale(1.2);
+}
+
+.savePdfButton:pressed {
+    background-color: Indigo;
+    color: Lime;
+}
+
+@media print {
+    @page {
+        size: A4 portrait;
+        margin: 10mm;
+    }
+
+    body {
+        width: 250mm;/* A4 width */
+        height: 330mm;/* A4 height */
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .content{
+        transform: scale(0.9); /* Reduz a escala para 85% */
+    }
+
+}

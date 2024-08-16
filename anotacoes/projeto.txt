@@ -1,0 +1,632 @@
+'''
+projeto/
+├── database.py
+├── dist.py
+├── gui.py
+├── importer.py
+├── main.py
+├── print.py
+├── update.py
+├── _pages/
+│   ├── form1.html
+│   ├── form2.html
+│   ├── form3.html
+├── _css/
+│   ├── button_styles.css
+│   ├── styles_form1.css
+│   ├── styles_form2.css  
+│   ├── styles_form3.css 
+│   ├── styles_form1_print.css 
+│   ├── styles_form2_print.css     
+├── _image/
+│   └── logo.png
+├── _scripts/
+│   ├── scripts_form1.js
+│   ├── scripts_form2.js
+│   ├── scripts_form3.js
+├── _models_print/
+│   ├── form1_print.js
+│   ├── form2_print.js
+├── _dist/
+│   ├── main.exe
+│   ├── _css
+│   ├── _image
+│   ├── _models_print
+│   ├── _pages
+│   ├── _scripts
+├── build
+├── anotacoes
+├── __pycache__
+
+'''
+# ######################################################################################################################################################
+# Arquivo: main.py
+
+import sys
+import os
+from gui import GUI, QApplication
+
+def main():
+    # Cria uma instância de QApplication
+    app = QApplication(sys.argv)
+
+    # Cria uma instância da classe GUI
+    gui = GUI(app)
+    gui.show()  # Exibe a janela principal
+
+    # Inicia o loop de eventos
+    sys.exit(app.exec())
+    
+
+def resource_path(relative_path):
+    """ Get the absolute path to the resource, works for dev and for PyInstaller """
+    base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, relative_path)
+
+if __name__ == '__main__':
+    main()
+    
+
+# #########################################################################################################################################################
+
+# Arquivo: gui.py
+
+# Importa as classes indispensáveis para a construção visual dos componentes GUI do PyQt6
+from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QTabWidget, QWidget, QVBoxLayout, QHBoxLayout
+from PyQt6.QtWebEngineWidgets import QWebEngineView
+from PyQt6.QtCore import QUrl, QLocale
+
+from database import Database # importa a classe Database do arquivo database.py
+from importer import Importer # importa a classe Importer do arquivo importer.py
+from print import PrintWindow # importa a classe PrintWindow do arquivo print.py
+from update import Update     # importa a classe Update do arquivo update.py
+import os
+
+class GUI(QMainWindow):             # Define a classe principal da janela, herdando de QMainWindow
+    def __init__(self, app):        # Método construtor inicializador da classe
+        super().__init__()          # Chama o inicializador da classe pai QMainWindow
+        self.app = app
+        
+    # ########################### # Definição da Aparência da Janela GUI # ###########################
+        
+        self.setWindowTitle('SISTEMATIZAÇÃO DA ASSISTÊNCIA DE ENFERMAGEM') # Define o título da janela
+        self.setGeometry(100, 100, 800, 600) # Define a posição e o tamanho da janela
+        
+        # Definir localidade para português do Brasil
+        self.locale = QLocale(QLocale.Language.Portuguese, QLocale.Country.Brazil)
+        QLocale.setDefault(self.locale)
+        
+        self.initUI()         # Chama o método que inicializa a interface do usuário
+
+    def initUI(self):         # Método que inicializa a interface do usuário
+        
+        tab_widget = QTabWidget()  # Cria um widget de abas
+        self.setCentralWidget(tab_widget)
+        
+        tab1 = QWidget()  # Cria um widget para a primeira aba
+        tab2 = QWidget()  # Cria um widget para a segunda aba
+        tab3 = QWidget()  # Cria um widget para a terceira aba
+        
+        tab_widget.addTab(tab1, "Formulário 1")  # Adiciona a primeira aba ao widget de abas
+        tab_widget.addTab(tab2, "Formulário 2")  # Adiciona a segunda aba ao widget de abas
+        tab_widget.addTab(tab3, "Formulário 3")  # Adiciona a terceira aba ao widget de abas
+        
+        layout1 = QVBoxLayout()  # Cria um layout vertical para a primeira aba
+        layout2 = QVBoxLayout()  # Cria um layout vertical para a segunda aba
+        layout3 = QVBoxLayout()  # Cria um layout vertical para a terceira aba
+        
+        browser1 = QWebEngineView()  # Cria um widget de visualização web para a primeira aba
+        browser2 = QWebEngineView()  # Cria um widget de visualização web para a segunda aba
+        browser3 = QWebEngineView()  # Cria um widget de visualização web para a terceira aba
+
+        # Ajusta o caminho para os arquivos HTML
+        html_path1 = os.path.join(os.getcwd(), '_pages', 'form1.html') # Arquivo form1.html na pasta _pages do projeto
+        html_path2 = os.path.join(os.getcwd(), '_pages', 'form2.html') # Arquivo form2.html na pasta _pages do projeto
+        html_path3 = os.path.join(os.getcwd(), '_pages', 'form3.html') # Arquivo form3.html na pasta _pages do projeto
+        
+        # Adicionar os visualizadores widgets
+        layout1.addWidget(browser1)  # Adiciona o widget de visualização web ao layout da primeira aba
+        layout2.addWidget(browser2)  # Adiciona o widget de visualização web ao layout da segunda aba
+        layout3.addWidget(browser3)  # Adiciona o widget de visualização web ao layout da terceira aba
+        
+        # Definir os Layouts
+        tab1.setLayout(layout1)  # Define o layout da primeira aba
+        tab2.setLayout(layout2)  # Define o layout da segunda aba
+        tab3.setLayout(layout3)  # Define o layout da terceira aba
+        
+        # Layout principal que incluirá o layout das abas e os botões
+        main_layout = QVBoxLayout()
+
+        # Adiciona o widget de abas ao layout principal
+        main_layout.addWidget(tab_widget)
+
+        # Layout horizontal para os botões
+        button_layout = QHBoxLayout()
+              
+        # Chama a função para carregar o estilo dos botões a partir do arquivo CSS na pasta _css
+        # Esta função load_button_styles() foi definida a seguir
+        self.load_button_styles()
+        
+        # Cria botões
+        new_button = QPushButton('Novo', self)         # Cria o botão para cadastrar um novo usuário   
+        save_button = QPushButton('Salvar', self)      # Cria o botão para salvar os dados 
+        import_button = QPushButton('Importar', self)  # Cria o botão para importar os dados
+        print_button = QPushButton('Imprimir', self)   # Cria o botão para imprimir os dados
+        
+        # Adiciona os botões ao layout horizontal
+        button_layout.addWidget(new_button)    # Adciona o botão 'Novo'
+        button_layout.addWidget(save_button)   # Adciona o botão 'Salvar'
+        button_layout.addWidget(import_button) # Adciona o botão 'Importar'
+        button_layout.addWidget(print_button)  # Adciona o botão 'Imprimir'
+        
+        # Adiciona o layout dos botões ao layout principal
+        main_layout.addLayout(button_layout)
+
+        # Cria um widget central para conter o layout principal
+        central_widget = QWidget()
+        central_widget.setLayout(main_layout)
+
+        # Define o widget central na janela principal
+        self.setCentralWidget(central_widget)    
+        
+        # Cria uma lista de Navegadores (browsers)
+        self.browsers_list = [browser1, browser2, browser3]
+        
+        # Cria uma lista de Navegadores (browsers) temporários
+        self.browsers_list_temp = [browser1, browser3]
+        
+        # Cria uma lista para guias ou tabs (para quando alternar entre browser1 e browser2)
+        self.tabs_changed = [browser1, browser3]
+        
+    # ################################### Eventos das abas e botões ###################################
+                
+        # Quando alternar a aba 1 para a aba3 fazer uma atualização
+        # do formulário 3 que pega do formulário 1 (chama a função tab_changed)
+        tab_widget.currentChanged.connect(self.tab_changed) 
+        
+        # Quando os botões forem clicados
+        new_button.clicked.connect(self.newUser)   # Conecta o clique do botão à função newUser
+        save_button.clicked.connect(self.saveData) # Conecta o clique do botão à função saveData
+        import_button.clicked.connect(self.importData)  # Conecta o clique do botão à função importData
+        print_button.clicked.connect(self.printWindow) # Conecta o clque do botão à função printWindow
+        
+    # ###################### Carrega os Browsers por último para não haver delay ######################
+    
+        self.html_path = (html_path1, html_path2, html_path3) # Tuplas de atalhos dos arquivos html na pasta _pages
+        self.browser = (browser1, browser2, browser3) # Tuplas de navegadores ou browsers
+        self.load_html_pages() # Chama a função para carregar as páginas HTML nos browsers
+            
+    # ################################ Funções ou Métodos da Classe GUI ################################
+        
+    # Essa função tem como objetivo abrir e ler o arquivo button_styles.css
+    # da pasta _css para estilizar os botões
+    def load_button_styles(self):
+        try:
+            with open("_css/button_styles.css", "r") as file: # Abrir como arquivo
+                button_styles_css = file.read()               # Ler o arquivo
+                self.setStyleSheet(button_styles_css)         # Aplicar os estilos
+        except Exception as e:
+            print(f"Erro ao carregar o arquivo CSS: {e}")
+            
+    # Função caso a aba 3 seja clicada
+    def tab_changed(self, index):
+        if index == 2:                         # Índice da aba 3   # Carrega um a lista de browsers da aba 1 e aba 3
+            update = Update(self.tabs_changed) # Instancia um objeto Update
+            del update                         # Deleta o objeto update da memória
+            
+    # Função para carregar as páginas dos navegadores (browsers) nas Guias
+    def load_html_pages(self):        
+        for path, tab in zip(self.html_path, self.browser):
+            tab.load(QUrl.fromLocalFile(path))       
+                       
+    # Função que cria uma nova instância da janela (novo objeto) na memória       
+    def newUser(self):  # Cria uma nova instância da janela
+        self.new_window = GUI(self.app)  # Cria uma nova instância da janela
+        self.new_window.show()  # Exibe a nova janela
+    
+    def saveData(self):
+        db = Database(self.browsers_list)
+        db.save_form_data()
+        
+    def importData(self):
+        importer = Importer()
+        importer.import_data_to_forms(self.browsers_list)
+
+    def printWindow(self):
+        print_pages = ["form1_print.html", "form2_print.html"]
+        folder_path = "_models_print"
+        self.print_window = PrintWindow(print_pages, folder_path, self.browsers_list_temp)
+        self.print_window.show()
+ 
+    
+# #########################################################################################################################################################
+
+# Arquivo: importer.py
+
+import sqlite3
+from PyQt6.QtWidgets import QFileDialog, QMessageBox
+
+class Importer:
+    def __init__(self):
+        self.connection = None
+        self.cursor = None
+
+    def connect_db(self, db_path):
+        try:
+            self.connection = sqlite3.connect(db_path)
+            self.cursor = self.connection.cursor()
+        except sqlite3.Error as e:
+            QMessageBox.critical(None, "Database Error", f"Failed to connect to database: {e}")
+
+    def close_db(self):
+        if self.connection:
+            self.connection.close()
+
+    def fetch_all_data(self):
+        data = {}
+        for table_name in ["form1", "form2", "form3"]:
+            try:
+                self.cursor.execute(f"SELECT * FROM {table_name}")
+                rows = self.cursor.fetchall()
+                columns = [desc[0] for desc in self.cursor.description]
+                data[table_name] = [dict(zip(columns, row)) for row in rows]
+            except sqlite3.OperationalError:
+                data[table_name] = []
+        return data
+    
+    
+    def generate_js_script(self, table_name, data):
+        js_code = ""
+        if table_name == "form2":
+            row_count = int(data[0].get('rowCountInput', 0))  # Obtenha o valor de rowCountInput
+            js_code += f"document.getElementById('rowCountInput').value = {row_count};\n"
+            for _ in range(row_count - 1):  # Adicione linhas extras conforme necessário
+                js_code += "addRow();\n"
+            js_code += "updateRowIds();\n"
+
+        for entry in data:
+            for key, value in entry.items():
+                if key != 'rowCountInput':  # Ignorar rowCountInput ao definir valores
+                    js_code += f"""
+                    var element = document.getElementById('{key}');
+                    if (element) {{
+                        if (element.tagName === 'SELECT') {{
+                            element.value = '{value}';
+                        }} else if (element.type === 'checkbox') {{
+                            element.checked = {'true' if value == 'checked' else 'false'};
+                        }} else if (element.type === 'radio') {{
+                            var radios = document.getElementsByName(element.name);
+                            for (var i = 0; i < radios.length; i++) {{
+                                if (radios[i].value === '{value}') {{
+                                    radios[i].checked = true;
+                                }}
+                            }}
+                        }} else {{
+                            element.value = '{value}';
+                        }}
+                    }}
+                    """
+        return js_code
+
+    def import_data_to_forms(self, browsers):
+        file_dialog = QFileDialog()
+        db_path, _ = file_dialog.getOpenFileName(None, "Selecionar Banco de Dados", "", "Database Files (*.db);;Todos os Arquivos (*)")
+        if db_path:
+            self.connect_db(db_path)
+            all_data = self.fetch_all_data()
+            for idx, browser in enumerate(browsers):
+                table_name = f"form{idx+1}"
+                if table_name in all_data:
+                    js_code = self.generate_js_script(table_name, all_data[table_name])
+                    print(js_code)  # Para depuração, imprimir o código JavaScript gerado
+                    browser.page().runJavaScript(js_code)
+            self.close_db()
+            QMessageBox.information(None, "Success", "Data imported successfully!")
+
+
+# #########################################################################################################################################################
+
+# database.py
+
+import sqlite3
+import json
+import os
+from PyQt6.QtWidgets import QFileDialog
+
+class Database:
+    def __init__(self, browsers):
+        self.browsers = browsers
+        self.conn = None
+        self.cursor = None
+        self.db_path = None
+
+    def connect(self, db_path):
+        self.conn = sqlite3.connect(db_path)
+        self.cursor = self.conn.cursor()
+
+    def save_form_data(self):
+        self.db_path = self.save_data_dialog()
+        if self.db_path:
+            self.remove_existing_db(self.db_path)
+            self.connect(self.db_path)
+            js_code = '''
+                (function() {
+                    const inputs = document.querySelectorAll('input, textarea, select');
+                    const dados = {};
+
+                    inputs.forEach(input => {
+                        const name = input.id || input.name;
+                        if (name) {
+                            if (input.type === 'checkbox') {
+                                dados[name] = input.checked ? 'checked' : 'unchecked';
+                            } else if (input.type === 'radio') {
+                                if (input.checked) {
+                                    dados[name] = input.value;
+                                }
+                            } else {
+                                dados[name] = input.value;
+                            }
+                        }
+                    });
+
+                    return JSON.stringify(dados);
+                })();
+            '''
+            self.pending_saves = len(self.browsers)
+            for idx, browser in enumerate(self.browsers):
+                browser.page().runJavaScript(js_code, lambda result, idx=idx: self.process_save_results(result, f"form{idx+1}"))
+
+    def process_save_results(self, result, table_name):
+        self.save_form_data_to_db(result, table_name)
+        self.pending_saves -= 1
+        if self.pending_saves == 0:
+            self.save_database()
+            self.export_to_txt()  # Exporta para TXT após salvar no banco de dados
+
+    def create_table(self, table_name, fields):
+        sanitized_fields = [f.replace('-', '_') for f in fields]
+        field_definitions = ", ".join([f"{field} TEXT" for field in sanitized_fields])
+        create_table_query = f"CREATE TABLE IF NOT EXISTS {table_name} ({field_definitions})"
+        self.cursor.execute(create_table_query)
+
+    def insert_data(self, table_name, data):
+        sanitized_data = {k.replace('-', '_'): v for k, v in data.items()}
+        placeholders = ", ".join(["?" for _ in sanitized_data.keys()])
+        insert_query = f"INSERT INTO {table_name} ({', '.join(sanitized_data.keys())}) VALUES ({placeholders})"
+        self.cursor.execute(insert_query, list(sanitized_data.values()))
+        self.conn.commit()
+
+    def save_form_data_to_db(self, json_data, table_name):
+        data = json.loads(json_data)
+        self.create_table(table_name, data.keys())
+        self.insert_data(table_name, data)
+
+    def save_database(self):
+        if self.conn:
+            self.conn.commit()
+            self.conn.close()
+            self.conn = None
+
+    def save_data_dialog(self):
+        options = QFileDialog.Option.DontUseNativeDialog  # Exemplos de opções: Pode ser None ou outra combinação de opções
+        file_name, _ = QFileDialog.getSaveFileName(None, "Salvar Banco de Dados", "", "Database Files (*.db)", options=options)
+       
+        # Adicionar extensão .db se não estiver presente
+        if file_name and not file_name.endswith('.db'):
+            file_name += '.db'
+        return file_name if file_name else None
+
+    def remove_existing_db(self, db_path):
+        if os.path.exists(db_path):
+            os.remove(db_path)
+
+    def export_to_txt(self):
+        if not self.db_path:
+            print("No database path set. Save the data first.")
+            return
+        
+        # Gerar o caminho do arquivo de texto no mesmo diretório do banco de dados
+        output_path = os.path.splitext(self.db_path)[0] + '.txt'
+
+        self.connect(self.db_path)
+        with open(output_path, 'w') as file:
+            for table_name in ["form1", "form2", "form3"]:
+                file.write(f"Table: {table_name}\n")
+                try:
+                    self.cursor.execute(f"SELECT * FROM {table_name}")
+                    rows = self.cursor.fetchall()
+                    for row in rows:
+                        file.write(f"{row}\n")
+                except sqlite3.OperationalError:
+                    file.write("No data found.\n")
+                file.write("\n")
+        self.conn.close()
+        print(f"Dados exportados para {output_path}")
+
+
+# #########################################################################################################################################################
+
+# Arquivo: update.py
+
+
+class Update:
+    def __init__(self, browsers):
+        
+        self.__browsers = browsers
+        
+        # Mapeando os campos principais para quando alternar as abas 
+        # dos formulários 1 para o Formulário 3 e fazer uma atualização 
+        # dos campos principais no formulário 3
+        self.field_mapping = {
+            "upa_selection": "upa_selection",
+            "date_field": "date_field",
+            "unit": "unit",
+            "name": "name",
+            "faa": "faa",
+            "sector": "sector",
+            "bed": "bed"
+        }
+        
+        self.__updateForm3()
+            
+    # Função para obter o valor do campo do form1 e atualizar o form3    
+    def __updateForm3(self): 
+        # Iterar sobre o dicionário de mapeamento para obter e definir valores dos campos
+        for form1_id, form3_id in self.field_mapping.items():
+            self.__browsers[0].page().runJavaScript(
+                f'document.getElementById("{form1_id}").value', lambda value, form3_id=form3_id: self.__setForm3Data(value, form3_id)
+            )
+            
+    # Callback para definir o valor no form3 após obtê-lo do form1
+    def __setForm3Data(self, value, form3_id):
+        # Callback para definir o valor no form3 após obtê-lo do form1
+        if value:
+            self.__browsers[1].page().runJavaScript(f'document.getElementById("{form3_id}").value = "{value}";')
+            
+
+# #########################################################################################################################################################
+
+# Arquivo: print.py
+
+from PyQt6.QtWidgets import QApplication, QFileDialog, QWidget, QVBoxLayout, QPushButton, QTabWidget, QMainWindow, QHBoxLayout
+from PyQt6.QtWebEngineWidgets import QWebEngineView
+from PyQt6.QtCore import QUrl, QTimer
+import os
+import tempfile
+from PyPDF2 import PdfMerger
+
+class PrintWindow(QMainWindow):
+    def __init__(self, print_pages, folder_path, browsers_list): # Método construtor inicializador da classe
+        super().__init__()                        # Chama o inicializador da classe pai QMainWindow
+        
+        self.print_pages = print_pages # Lista de QWebEngineView
+        self.folder_path = folder_path
+        self.browsers_list = browsers_list
+        self.print_pages_list = []
+        
+        self.setWindowTitle("Print Preview") # Define o título da janela
+        self.setGeometry(100, 100, 800, 600) # Define a posição e o tamanho da janela
+        
+        self.tab_widget = QTabWidget() # Cria um widget de abas
+        self.setCentralWidget(self.tab_widget)
+        
+        # Chama a função load_print_pages() para carregar os modelos de impressão
+        # nas guias correspondentes
+        self.load_print_pages()
+        
+        # Layout principal que incluirá o layout das abas e os botões
+        main_layout = QVBoxLayout()
+        
+        # Adiciona o widget de abas ao layout principal
+        main_layout.addWidget(self.tab_widget)
+        
+        # Layout horizontal para os botões
+        button_layout = QHBoxLayout()
+        
+        self.load_button_styles()
+        
+        # Cria botões
+        self.pdf_button = QPushButton('Salvar como PDF', self)   # Cria o botão para salvar em PDF
+        # self.print_button = QPushButton('Impressora', self) # Cria o botão para Impressora
+        
+        # Adiciona os botões ao layout horizontal
+        button_layout.addWidget(self.pdf_button)    # Adciona o botão 'PDF'
+        # button_layout.addWidget(self.print_button)  # Adciona o botão 'Imprimir'
+        
+        # Adiciona o layout dos botões ao layout principal
+        main_layout.addLayout(button_layout)
+
+        # Cria um widget central para conter o layout principal
+        central_widget = QWidget()
+        central_widget.setLayout(main_layout)
+
+        # Define o widget central na janela principal
+        self.setCentralWidget(central_widget)  
+        
+        self.JavaScript_Browsers()
+        
+        # ################################### Eventos para botões ###################################
+        
+        self.pdf_button.clicked.connect(self.save_as_pdf)
+        # self.print_button.clicked.connect(self.printer)
+        
+        # ###########################################################################################
+        
+        
+    def load_print_pages(self):
+        count = 0 # controla o índice do da guia ou aba (Tab)
+        for page in self.print_pages:
+            view = QWebEngineView()
+            file_path = os.path.join(os.getcwd(), self.folder_path, page) 
+            view.setUrl(QUrl.fromLocalFile(file_path))
+            self.tab_widget.addTab(view, page)
+            self.tab_widget.setTabText(count, f"Formulario {count + 1}")
+            count += 1
+            self.print_pages_list.append(view)
+            
+    # Essa função tem como objetivo abrir e ler o arquivo button_styles.css
+    # da pasta _css para estilizar os botões
+    def load_button_styles(self):
+        try:
+            with open("_css/button_styles.css", "r") as file: # Abrir como arquivo
+                button_styles_css = file.read()               # Ler o arquivo
+                self.setStyleSheet(button_styles_css)         # Aplicar os estilos
+        except Exception as e:
+            print(f"Erro ao carregar o arquivo CSS: {e}")
+            
+
+    def save_as_pdf(self):
+        pdf_path, _ = QFileDialog.getSaveFileName(self, "Save PDF", "", "PDF Files (*.pdf)")
+
+        if pdf_path:
+            self.temp_files = []
+            self.current_tab = 0
+            self.pdf_path = pdf_path
+            self.print_next_tab_to_pdf()
+
+    def print_next_tab_to_pdf(self):
+        if self.current_tab < self.tab_widget.count():
+            tab = self.tab_widget.widget(self.current_tab)
+            temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
+            self.temp_files.append(temp_file.name)
+            tab.page().printToPdf(lambda data: self.on_pdf_printed(data, temp_file.name))
+        else:
+            self.combine_pdfs()
+
+    def on_pdf_printed(self, data, file_path):
+        with open(file_path, 'wb') as f:
+            f.write(data.data())
+        self.current_tab += 1
+        QTimer.singleShot(1000, self.print_next_tab_to_pdf)
+
+    def combine_pdfs(self):
+        merger = PdfMerger()
+
+        for pdf in self.temp_files:
+            merger.append(pdf)
+
+        merger.write(self.pdf_path)
+        merger.close()
+
+        for pdf in self.temp_files:
+            os.remove(pdf)
+
+        print(f"PDF saved to {self.pdf_path}")
+        
+    def JavaScript_Browsers(self):
+        
+        print(f"Quantidade de navegadores: {len(self.browsers_list)}")
+        print(f"Quantidade de paginas: {len(self.print_pages)}")
+
+        self.browsers_list[0].page().runJavaScript("saveFormData()", self.handle_result)
+        self.print_pages_list[0].page().runJavaScript("loadFormData()", self.handle_result)
+        
+        self.browsers_list[1].page().runJavaScript("saveFormData()", self.handle_result)
+        self.print_pages_list[1].page().runJavaScript("loadFormData()", self.handle_result)
+        
+    def handle_result(self, result):
+        # Imprimir ou lidar com o resultado da execução do JavaScript
+        if result:
+            print("Resultado da execução do JavaScript:", result)
+        else:
+            print("Nenhum resultado retornado ou erro.")

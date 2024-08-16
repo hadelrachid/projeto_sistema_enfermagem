@@ -1,0 +1,222 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.a4-landscape {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 0.2px;
+    border: 1px solid black;
+    padding: 5px;
+    margin: 5px;
+}
+
+.header, .section, .full-width{
+    grid-column: span 3;
+    border: 1px solid black;
+    padding: 3px 3px;
+    margin: 2px 2px;
+}
+
+.header {
+    display: flex;
+    text-align: center;
+    border: 1px solid white;
+    padding: 3px;
+    align-items: center;
+}
+
+#div-city-hall, #div-title-main, #div-gap-1 {
+    flex: auto;
+}
+
+#div-city-hall {
+    text-align: left;
+}
+
+#div-city-hall > img {
+    width: 25%;
+}
+
+.div-inline{
+    display: flex;
+    grid-column: span 3;
+    justify-content: space-between;
+}
+
+.half-section {
+    grid-column: span 1;
+    border: 1px solid black;
+    padding: 2px;
+}
+
+.field-unidade {
+    grid-column: span 3;
+    margin: 2px;
+}
+
+.section {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2px;
+}
+
+.field {
+    flex: auto;
+    margin: 1px;
+    padding: 1px;
+}
+
+.equivalent-width{
+    width: 50%;
+}
+
+.fieldset-width{
+    width: 25%;
+}
+
+.h2-title{
+    font-size: 1em;
+}
+
+h2 {
+    margin: 0;
+    font-size: 0.85em;
+}
+
+.adjust-elements{
+    flex: auto;
+    margin: 1px;
+    padding: 1px;
+    height: 50%;
+}
+
+legend {
+    font-size: 0.8em;
+    font-weight: 800;
+    border: 1px solid #333; /* Aqui você pode ajustar a espessura e a cor da borda */
+    padding: 3px; /* Opcional: adicione algum espaço interno para melhorar a aparência */
+    background-color: lightgray; /* Aqui você pode usar o código hexadecimal da cor que preferir */
+    width: 100%;
+}
+
+
+.small-text {
+    font-size: 0.6em;
+}
+
+.small-title{
+    font-size: 0.7em;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.header-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-title h2 {
+    flex: 1;
+    text-align: center;
+}
+
+.header-title div:last-child {
+    flex: none;
+}
+
+
+select, #date-field, #birth_date {
+    border: none;
+    outline: none; /* Remove o contorno quando o select está em foco */
+    -webkit-appearance: none; /* Remove a aparência padrão no WebKit */
+    -moz-appearance: none; /* Remove a aparência padrão no Firefox */
+    appearance: none; /* Remove a aparência padrão nos navegadores modernos */
+    margin: 0 1px;
+    padding: 0 1px;
+    font-weight: bold;       
+}
+
+textarea{
+    border: none;
+    outline: none;
+    width: 100%;
+    resize: none;
+}
+
+input[type="radio"]{
+    appearance: none; /* Remove o estilo padrão do sistema */
+    -webkit-appearance: none; /* Para navegadores baseados em WebKit (como o Chrome) */
+    width: 0.5em;
+    height: 0.5em;
+    border: 0.25em solid transparent; /* Contorno da bolinha */
+    border-radius: 50%; /* Torna a bolinha circular */
+    background-color: transparent; /* Torna a bolinha não selecionada invisível */
+    text-align: center;
+    margin: 0 auto;
+}
+
+input[type="radio"]:checked {
+    background-color: black;
+    border-color: black;
+}
+
+input[type="checkbox"]{
+    appearance: none; /* Remove o estilo padrão do sistema */
+    -webkit-appearance: none; /* Para navegadores baseados em WebKit (como o Chrome) */
+    width: 0.5em;
+    height: 0.5em;
+    border: 0.25em solid transparent; /* Contorno da bolinha */
+    border-radius: 30%; /* Torna a bolinha circular */
+    background-color: transparent; /* Torna a bolinha não selecionada invisível */
+    text-align: center;
+    margin: 0 auto;
+}
+
+input[type="checkbox"]:checked {
+    background-color: black;
+    border-color: black;
+}
+
+.text, .number, .time {
+    border: none;
+    border-bottom: 1px solid #000; /* Cor da linha */
+    outline: none;   
+}
+
+.number{
+    text-align: center;
+    width: 60px;
+}
+
+@media print {
+    @page {
+    size: A4 portrait;
+    margin: 10mm;
+    }
+
+    body {
+        width: 250mm;/* A4 width */
+        height: 330mm;/* A4 height */
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .content{
+        transform: scale(0.9); /* Reduz a escala para 85% */
+    }
+
+}

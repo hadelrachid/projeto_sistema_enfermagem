@@ -1,0 +1,89 @@
+/* Reset básico */
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 10px;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+#header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#header img{
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    height: 50px; /* Ajuste o tamanho da imagem conforme necessário */
+}
+
+#header h2{
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+fieldset{
+    width: 100%;
+    display:inline-block;
+    margin: 5px;
+    border: 1px solid #ccc;  
+}
+
+legend{
+    font-weight: bold;
+    color: #363636;
+}
+
+div{
+    display: inline-block;
+    margin: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 5px;
+    text-align: center;
+}
+
+th {
+    text-align: center;
+    background-color: #f2f2f2;
+}
+
+label {
+    display: inline-block;
+    margin-right: 10px; /* Reduz a distância entre o label e a caixa de texto */
+}
+
+input[type="text"] {
+    padding: 5px;
+    width: 100%;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
+}

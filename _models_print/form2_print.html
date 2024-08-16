@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" type="text/css" href="../_css/styles_form2_print.css">
+    <title>Exame Físico de Enfermagem</title>
+</head>
+<body>
+    <form id="form-anamnese-2">
+        <div class="content">
+            <div class="a4-landscape">
+                <div class="header">
+                    <div id="div-city-hall"><img src="../_image/logo.png" alt="Logo"></div>
+                    <div id="div-title-main"><h2 class="h2-title">SISTEMATIZAÇÃO DA ASSISTÊNCIA DE ENFERMAGEM -<select id="unit" name="unit" >
+                                                                                                                    <option value="">Select Unidade</option>
+                                                                                                                    <option value="1">EUGÊNIO DE MELO</option>
+                                                                                                                    <option value="2">NOVO HORIZONTE</option>
+                                                                                                                </select></h2></div>
+                    <div id="div-gap-1"></div>
+                </div>
+
+                <!-- Campo para colocar a DATA -->
+                <div class="section header-title">
+                    <div></div>
+                    <h2>EXAME FÍSICO</h2>
+                    <div><strong class="small-text">DATA: <input type="date" id="date_field" name="data_field" ></strong></div>
+                </div>
+
+                <!-- Campo para colocar o nome do patient_responsible e o local -->
+                <fieldset class="section half-section field-unidade">
+                <legend class="center-text">DADOS</legend>
+                    <div class="field small-text"> <label for="name">Nome: </label> <input type="text" class="text" id="name" name="name" size="40" ></div>
+                    <div class="field small-text"><label for="sector">Setor: </label> <input type="text" class="text" id="sector" name="sector" ></div>
+                    <div class="field small-text"><label for="bed">Leito: </label> <input type="text" class="text" id="bed" name="bed" ></div>
+                </fieldset>
+
+                <!-- Campos para SINAIS VITAIS -->
+                <fieldset class="section">
+                <legend class="center-text small-title">SINAIS VITAIS</legend>
+                    <div class="field small-text"><label for="temperature">TºC: </label> <input type="number" class="number" id="temperature" name="temperature" step="0.1"></div>
+                    <div class="field small-text"> <label for="fr">FR:</label> <input type="number" class="number" id="fr" name="fr" ></div>
+                    <div class="field small-text"><label for="fc">FC:</label> <input type="number" class="number" id="fc" name="fc" ></div>
+                    <div class="field small-text"><label for="pa">PA:</label> <input type="number" class="number" id="pa" name="pa" step="0.1" ></div>
+                    <div class="field small-text"><label for="sato2">SatO<sub>2</sub>:</label> <input type="number" class="number" id="sato2" name="sato2" step="0.1"></div>
+                </fieldset>
+
+                <!-- Campos para AVALIAÇÃO NEUROLÓGICA -->
+                <div class="div-inline">
+                    <fieldset class="section full-width equivalent-width">
+                    <legend class="center-text small-title">AVALIAÇÃO NEUROLÓGICA</legend>
+                            <!-- Campo para ESCALA DE COMA DE GLASGOW -->
+                            <fieldset class="field small-text fieldset-width">
+                                <label for="total">Total (0-15): </label><input type="number" id="total" class="number" name="total" min="0" max="15" >
+                            </fieldset>
+
+                            <!-- Campo para ESCALA DE COMA DE RAMSAY -->
+                            <fieldset class="field small-text fieldset-width">
+                            <legend>ESCALA DE COMA DE RAMSAY - GRAU:</legend>
+                                <select id="ramsay" name="ramsay">
+                                    <option value=""  selected>Selecione</option>
+                                    <option value="1">1 - Ansioso e agitado ou inquieto, ou ambos</option>
+                                    <option value="2">2 - Cooperativo, orientado e tranquilo</option>
+                                    <option value="3">3 - Responde apenas a comandos</option>
+                                    <option value="4">4 - Dormindo, mas com uma resposta rápida a estímulos auditivos ou tácteis leves</option>
+                                    <option value="5">5 - Dormindo, com resposta lenta a estímulos auditivos ou tácteis leves</option>
+                                    <option value="6">6 - Sem resposta a estímulos auditivos ou tácteis leves</option>
+                                </select>
+                            </fieldset>
+
+                            <!-- Campo para PUPILAS -->
+                            <fieldset class="field small-text fieldset-width">
+                            <legend>PUPILAS:</legend>
+                                <div class="field">&lpar; <input type="checkbox" id="anisochoric" name="anisochoric" value="anisochoric"> &rpar; <label for="anisochoric"> Anisocóricas OD __OE </label></div>
+                                <div class="field">&lpar; <input type="checkbox" id="isochoric" name="isochoric" value="isochoric"> &rpar; <label for="isochoric">Isocóricas </label></div>
+                                <div class="field">&lpar; <input type="checkbox" id="mydriatics" name="mydriatics" value="mydriatics"> &rpar; <label for="mydriatics">Midriáticas</label></div>
+                                <div class="field">&lpar; <input type="checkbox" id="miotics" name="miotics" value="miotics"> &rpar; <label for="miotics">Mióticas</label></div>
+                            </fieldset>
+
+                            <!-- Campo para FORÇA MOTORA -->
+                            <fieldset class="field small-text">
+                            <legend>FORÇA MOTORA:</legend>
+                                <div class="field">&lpar; <input type="checkbox" id="present_symmetric" name="present_symmetric" value="present_symmetric"> &rpar; <label for="present_symmetric">Presente/Simétrica</label></div>
+                                <div class="field">&lpar; <input type="checkbox" id="paresthesia" name="paresthesia" value="paresthesia">  &rpar; <label for="paresthesia">Parestesia<label> <label for="local_paresthesia">/ Local:</label> <input type="text" id="local_paresthesia" class="text" name="local_paresthesia" size="10"></div>
+                                <div class="field">&lpar; <input type="checkbox" id="paresis" name="paresis" value="paresis"> &rpar; <label for="paresis">Paresia</label> <label for="local_paresis">/ Local:</label> <input type="text" id="local_paresis" class="text" name="local_paresis" size="10"></div>
+                                <div class="field">&lpar; <input type="checkbox" id="plegia" name="plegia" value="plegia"> &rpar; <label for="plegia">Plegia</label> <label for="local_plegia">/ Local:</label> <input type="text" id="local_plegia" class="text" name="local_plegia" size="10"></div>
+                            </fieldset>
+
+                            <!-- Campo para RESTRIÇÃO MECÂNICA -->
+                            <fieldset class="field small-text fieldset-width">
+                            <legend>RESTRIÇÃO MECÂNICA:</legend>
+                                <div class="field">&lpar; <input type="radio" id="mechanical_restriction_no" name="mechanical_restriction" value="no"> &rpar; <label for="mechanical_restriction_no">Não</label></div>
+                                <div class="field">&lpar; <input type="radio" id="mechanical_restriction_yes" name="mechanical_restriction" value="yes"> &rpar; <Label for="mechanical_restriction_yes">Sim</label></div>
+                                <div class="field"><label for="local_mechanical_restriction">Local:</label> <input type="text" id="local_mechanical_restriction" class="text" name="local_mechanical_restriction" size="15"></div>
+                            </fieldset>
+
+                            <!-- Campo para PROTEÇÃO CERVICAL -->
+                            <fieldset class="field small-text fieldset-width">
+                            <legend>PROTEÇÃO CERVICAL:</legend>
+                                <div class="field">&lpar; <input type="checkbox" id="neck_brace" name="neck_brace" value="eck_brace">  &rpar; <label for="neck_brace">Colar Cervical</label></div>
+                                <div class="field">&lpar; <input type="checkbox" id="rigid_board" name="rigid_board" value="rigid_board"> &rpar; <label for="rigid_board">Prancha Rígida</label></div>
+                                <div class="field">&lpar; <input type="checkbox" id="not_indicated" name="not_indicated" value="not_indicated"> &rpar; <label for="not_indicated">Não Indicado</label></div>
+                            </fieldset>
+                    </fieldset>
+
+                    <!-- Campos para AVALIAÇÃO DO APARELHO RESPIRATÓRIO -->
+                    <fieldset class="section full-width equivalent-width">
+                    <legend class="center-text small-title">AVALIAÇÃO DO APARELHO RESPIRATÓRIO</legend>
+
+                        <!-- Campos para FREQUÊNCIA RESPIRATÓRIA -->
+                        <fieldset class="field small-text">
+                        <legend>FREQUÊNCIA RESPIRATÓRIA:</legend>
+                            <div class="field"><label for="assessment-fr">FR: </label> <input type="number" id="assessment_fr" class="number" name="assessment_fr" value=""></div>
+                            <div class="field">&lpar; <input type="radio" id="eupneic" name="respiratory_frequency" value="eupneic"> &rpar; <label for="eupneic">Eupneico</label></div>
+                            <div class="field">&lpar; <input type="radio" id="dyspneic" name="respiratory_frequency" value="dyspneic"> &rpar; <label for="dyspneic">Dispneico</label></div>
+                            <div class="field">&lpar; <input type="radio" id="tachypneic" name="respiratory_frequency" value="tachypneic"> &rpar; <label for="tachypneic">Taquipneico</label></div>
+                            <div class="field">&lpar; <input type="radio" id="bradypneic" name="respiratory_frequency" value="bradypneic"> &rpar; <label for="bradypneic">Bradipneico</label></div>
+                        </fieldset>
+
+                        <!-- Campos para VENTILAÇÃO -->
+                        <fieldset class="field small-text fieldset-width">
+                        <legend>VENTILAÇÃO:</legend>
+                            <div class="field">&lpar; <input type="radio" id="spontaneous" name="ventilation" value="spontaneous"> &rpar; <label for="spontaneous">Espontânea</label></div>
+                            <div class="field">&lpar; <input type="radio" id="ambient_air" name="ventilation" value="ambient_air"> &rpar; <label for="ambient_air">Ar Ambiente</label></div>
+                            <div class="field">&lpar; <input type="radio" id="mechanical_ventilation" name="ventilation" value="mechanical_ventilation"> &rpar; <label for="mechanical_ventilation">Ventilação Mecânica</label></div>
+                        </fieldset>
+
+                        <!-- Campos para CATÉTER O2 -->
+                        <fieldset class="field small-text fieldset-width">
+                        <legend>CATÉTER O<sub>2</sub>:</legend>
+                            <div class="field">&lpar; <input type="radio" id="catheter_oxygen_no" name="catheter_oxygen" value="no"> &rpar; <label for="catheter_oxygen_no">Não</label></div>
+                            <div class="field">&lpar; <input type="radio" id="catheter_oxygen_yes" name="catheter_oxygen" value="yes"> &rpar; <label for="catheter_oxygen_yes">Sim</label></div>
+                            <div class="field"> <input type="number" class="number" id="oxygen_liter_minute" name="oxygen_liter_minute" step="0.1" min="0.0"> <label for="oxygen_liter_minute">L/min</label></div>
+                        </fieldset>
+
+                        <!-- Campos para MACRONEBULIZAÇÃO -->
+                        <fieldset class="field small-text fieldset-width">
+                        <legend>MACRONEBULIZAÇÃO:</legend>
+                            <div class="field">&lpar; <input type="radio" id="macronebulization_no" name="macronebulization" value="no"> &rpar; <label for="macronebulization_no">Não</label></div>
+                            <div class="field">&lpar; <input type="radio" id="macronebulization_yes" name="macronebulization" value="yes"> &rpar; <label for="macronebulization_yes">Sim</label></div>
+                            <div class="field"><input type="number" class="number" id="macronebulization_liter_minute" name="macronebulization_liter_minute" min="0" step="0.1" > <label for="macronebulization_liter_minute">L/min</label></div>
+                        </fieldset>
+
+                        <!-- Campos para EXPANSIBILIDADE -->
+                        <fieldset class="field small-text fieldset-width">
+                        <legend>EXPANSIBILIDADE:</legend>
+                            <div class="field">&lpar; <input type="checkbox" id="bilateral_expandability" name="expansiveness" value="bilateral"> &rpar; <label for="bilateral_expandability">Bilateral</label></div>
+                            <div class="field">&lpar; <input type="checkbox" id="decreased_expandability" name="macronebulization" value="decreased"> &rpar; <label for="decreased_expandability">Diminuída:</label></div>
+                            <div class="field">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lpar; <input type="checkbox" id="htd" name="htd" value="htd"> &rpar; <label for="htd">HTD</label></div>
+                            <div class="field">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lpar; <input type="checkbox" id="hte" name="hte" value="hte"> &rpar; <label for="hte">HTE</label></div>
+                        </fieldset>
+
+                        <!-- Campos para MURMÚRIOS VESICULARES -->
+                        <fieldset class="field small-text fieldset-width">
+                        <legend>MURMÚRIOS VESICULARES:</legend>
+                            <div class="field">&lpar; <input type="radio" id="vesicular_murmurs_present" name="vesicular_murmurs" value="present"> &rpar; <label for="vesicular_murmurs_present">Presente</label></div>
+                            <div class="field">&lpar; <input type="radio" id="decreased_vesicular_murmurs" name="vesicular_murmurs" value="decreased"> &rpar; <label for="decreased_vesicular_murmurs">Diminuido</label></div>
+                            <div class="field">&lpar; <input type="radio" id="vesicular_murmurs_absent" name="vesicular_murmurs" value="absent"> &rpar; <label for="vesicular_murmurs_absent">Ausente</label></div>           
+                        </fieldset>     
+
+                        <!-- Campos para RUÍDOS ADVENTÍCIOS -->
+                        <fieldset class="field small-text fieldset-width">
+                        <legend>RUÍDOS ADVENTÍCIOS:</legend>
+                            <div class="field">&lpar;  <input type="checkbox" id="adventitious_snoring_noises" name="adventitious_snoring_noises" value="noises"> &rpar; <label for="adventitious_snoring_noises">Roncos</label></div>
+                            <div class="field">&lpar; <input type="checkbox" id="adventitial_rales_noises" name="adventitial_rales_noises" value="adverntitial"> &rpar; <label for="adventitial_rales_noises">Estertores</label></div>
+                            <div class="field">&lpar; <input type="checkbox" id="adventitious_whistles_noises" name="adventitious_whistles_noises" value="whistles"> &rpar; <label for="adventitious_whistles_noises">Sibilos</label></div>             
+                        </fieldset>           
+                    </fieldset>
+                </div>
+
+                <!-- Campos para AVALIAÇÃO CARDIOLÓGICA -->
+                <div class="div-inline">
+                    <fieldset class="section full-width equivalent-width">
+                    <legend class="center-text small-title">AVALIAÇÃO CARDIOLÓGICA</legend>
+                        
+                        <!-- Campos para RITMO CARDÍACO -->
+                        <fieldset class="field small-text">
+                        <legend>RITMO CARDÍACO:</legend>
+                            <div class="field">&lpar; <input type="radio" id="heart_rhythm_rhythm" name="heart_rate" value="rhythm"> &rpar; <label for="heart_rhythm_rhythm">Rítmico</label></div>
+                            <div class="field">&lpar; <input type="radio" id="arrhythmic_cardiac_rhythm" name="heart_rate" value="arrhythmic"> &rpar; <label for="arrhythmic_cardiac_rhythm">Arrítmico</label></div>
+                            <div class="field">&lpar; <input type="checkbox" id="heart_rhythm_pacemaker" name="pacemaker" value="pacemaker"> &rpar; <label for="heart_rhythm_pacemaker">Marcapasso</label></div>
+                        </fieldset>
+
+                        <!-- Campo para PERFUSÃO PERIFÉRICA -->
+                        <fieldset class="field small-text">
+                        <legend>PERFUSÃO PERIFÉRICA:</legend>
+                            <td><input type="number" class="number" id="peripheral_perfusion" name="peripheral_perfusion" min="0" step="0.1" > <label for="peripheral_perfusion">Seg.</label></td>
+                        </fieldset>
+
+                        <!-- Campo para SUDORESE -->
+                        <fieldset class="field small-text">
+                        <legend>SUDORESE:</legend>
+                            <div class="field">&lpar; <input type="radio" id="sweating_present" name="sweating" value="present"> &rpar;  <label for="sweating_present">Presente</label></div>
+                            <div class="field">&lpar; <input type="radio" id="sweating_absent" name="sweating" value="absent"> &rpar;  <label for="sweating_absent">Ausente</label></div>
+                        </fieldset>
+
+                        <!-- Campo para PULSOS RADIAIS -->
+                        <fieldset class="field small-text">
+                        <legend>PULSOS RADIAIS:</legend>
+                            <div class="field">&lpar; <input type="checkbox" id="radial_pulse_right" name="radial_pulse_right" value="right"> &rpar; <label for="radial_pulse_right">D</label></div>
+                            <div class="field">&lpar; <input type="checkbox" id="radial_pulse_left" name="radial_pulse_left" value="left"> &rpar; <label for="radial_pulse_left">E</label></div>
+                        </fieldset>
+
+                        <!-- Campo para PULSOS PEDIOSOS -->
+                        <fieldset class="field small-text">
+                        <legend>PULSOS PEDIOSOS:</legend>
+                            <div class="field">&lpar; <input type="checkbox" id="pedious_pulse_right" name="pedious_pulse_right" value="right"> &rpar; <label for="pedious_pulse_right">D</label></div>
+                            <div class="field">&lpar; <input type="checkbox" id="pedious_pulse_left" name="pedious_pulse_left" value="left"> &rpar; <label for="pedious_pulse_left">E</label></div>
+                        </fieldset>
+                    </fieldset>
+
+                    <!-- Campos para AVALIAÇÃO DO AP GASTROINTESTINAL -->
+                    <fieldset class="section full-width equivalent-width">
+                    <legend class="center-text small-title">AVALIAÇÃO DO APARELHO GASTROINTESTINAL</legend>
+
+                        <!-- Campo para JEJUM -->
+                        <fieldset class="field small-text">
+                        <legend>JEJUM:</legend>
+                            <div class="field">&lpar; <input type="radio" id="fast_yes" name="fast" value="yes"> &rpar; <label for="fast_yes">Sim</label> <label for="fast_time">- Duração:</label> <input type="time" id="fast_time" class="time" name="fast_time" ></div>
+                            <div class="field">&lpar; <input type="radio" id="fast_no" name="fast" value="no"> &rpar; <label for="fast_no">Não</label> </div>
+                            <div class="field">&lpar; <input type="radio" id="open_probe" name="probe" value="open"> &rpar; <label for="open_probe">Sonda aberta</label></div>
+                            <div class="field">&lpar; <input type="radio" id="closed_probe" name="probe" value="closed"> &rpar; <label for="closed_probe">Sonda fechada</label></div>
+                        </fieldset>
+
+                        <!-- Campo para DIETA -->
+                        <fieldset class="field small-text">
+                        <legend>DIETA:</legend>
+                            <div class="field">&lpar; <input type="checkbox" id="diet_vo" name="diet_vo" value="vo"> &rpar; <label for="diet_vo">VO</label></div>
+                            <div class="field">&lpar; <input type="checkbox" id="diet_sne" name="diet_sne" value="sne"> &rpar; <label for="diet_sne">SNE</label> </div>
+                            <div class="field">&lpar; <input type="checkbox" id="gastrostomy" name="gastrostomy" value="gastrostomy"> &rpar; <label for="gastrostomy">Gastrostomia</label> </div>
+                            <div class="field">&nbsp;&nbsp;<label for="diet_ml_h">mL/h:</label> <input type="number" id="diet_ml_h" class="number" name="ml_h" min="0" step="0.1" ></div>
+                        </fieldset>
+
+                        <!-- Campo para EVACUAÇÃO -->
+                        <fieldset class="field small-text">
+                        <legend>EVACUAÇÃO:</legend>
+                            <div class="field">&lpar; <input type="radio" id="evacuation_present" name="evacuation" value="present"> &rpar; <label for="evacuation_present">Presente</label></div>
+                            <div class="field">&lpar; <input type="radio" id="evacuation_absent" name="evacuation" value="absent"> &rpar; <label for="evacuation_absent">Ausente</label> há: <input type="number" id="evacuation_days" class="number" name="evacuation" min="0"> dias.</div>
+                        </fieldset>
+
+                        <!-- Campo para AVALIAÇÃO ABDOME -->
+                        <fieldset class="section field small-text">
+                        <legend>AVALIAÇÃO DO ABDOME:</legend>
+                            <div class="field">&lpar; <input type="checkbox" id="flat_abdomen" name="flat_abdomen" value="flat"> &rpar; <label for="flat_abdomen">Plano</label></div>
+                            <div class="field">&lpar; <input type="checkbox" id="flabby_abdomen" name="flabby_abdomen" value="flabby">  &rpar; <label for="flabby_abdomen">Flácido</label></div>
+                            <div class="field">&lpar; <input type="checkbox" id="distended_abdomen" name="distended_abdomen" value="distended"> &rpar; <label for="distended_abdomen">Distendido</label></div>
+                            <div class="field">&lpar; <input type="checkbox" id="tense_abdomen" name="tense_abdomen" value="tense"> &rpar; <label for="tense_abdomen">Tenso</label></div>
+                            <div class="field">&lpar; <input type="checkbox" id="painless_abdomen" name="painless_abdomen" value="painless"> &rpar; <label for="painless_abdomen">Indolor</label></div>
+                            <div class="field">&lpar; <input type="checkbox" id="painful_abdomen" name="painful_abdomen" value="painful"> &rpar; <label for="painful_abdomen">Doloroso</label></div>
+                        </fieldset>
+
+                        <!-- Campo para RHA -->
+                        <fieldset class="field small-text">
+                        <legend>RHA:</legend>
+                            <div class="field">&lpar; <input type="radio" id="rha_present" name="rha" value="present"> &rpar; <label for="rha_present">Presente</label></div>
+                            <div class="field">&lpar; <input type="radio" id="rha_absent" name="rha" value="absent"> &rpar; <label for="rha_absent">Ausente</label></div>
+                        </fieldset>
+                    </fieldset>
+                </div>
+
+                <!-- Campos para AVALIAÇÃO DO APARELHO URINÁRIO -->
+                <div class="div-inline">
+                    <fieldset class="section full-width equivalent-width">
+                    <legend class="center-text small-title">AVALIAÇÃO DO APARELHO URINÁRIO</legend> 
+
+                        <!-- Campo para DIURESE -->
+                        <fieldset class="section small-text adjust-elements">
+                        <legend>DIURESE:</legend>
+                            <div class="field">&lpar; <input type="checkbox" id="diuresis_present" name="diuresis_present" value="present"> &rpar; <label for="diuresis_present">Presente</label></div>
+                            <div class="field">&lpar; <input type="checkbox" id="diuresis_polyuria" name="diuresis_polyuria" value="polyuria"> &rpar; <label for="diuresis_polyuria">Poliúria</label></div>
+                            <div class="field">&lpar; <input type="checkbox" id="diuresis_spontaneous" name="diuresis_spontaneous" value="spontaneous"> &rpar; <label for="diuresis_spontaneous">Espontânea</label></div>
+                            <div class="field">&lpar; <input type="checkbox" id="diuresis_anuria" name="diuresis_anuria" value="anuria"> &rpar; <label for="diuresis_anuria">Anúria</label></div>
+                            <div class="field">&lpar; <input type="checkbox" id="diuresis_oliguria" name="diuresis_oliguria" value="oliguria"> &rpar; <label for="diuresis_oliguria">Oligúria</label></div>
+                            <div class="field">&lpar; <input type="checkbox" id="diuresis_incontinent" name="diuresis_incontinent" value="incotinent"> &rpar; <label for="diuresis_incontinent">Incontinente</label></div>
+                            <div class="field">&lpar; <input type="checkbox" id="diuresis_svd" name="diuresis_svd" value="svd"> &rpar; <label for="diuresis_svd">SVD</label></div>
+                        </fieldset>
+
+                        <!-- Campo para ASPECTO -->
+                        <fieldset class="section small-text adjust-elements">
+                        <legend>ASPECTO:</legend>
+                            <div class="field">&lpar; <input type="checkbox" id="aspect_concentrated" name="aspect_concentrated" value="concentrated"> &rpar; <label for="aspect_concentrated">Concentrada</label></div>
+                            <div class="field">&lpar; <input type="checkbox" id="aspect_hematuria" name="aspect_hematuria" value="hematuria"> &rpar; <label for="aspect_hematuria">Hematúrica</label></div>
+                            <div class="field">&lpar; <input type="checkbox" id="aspect_light_yellow" name="aspect_light_yellow" value="ight_yellow"> &rpar; <label for="aspect_light_yellow">Amarelo claro</label></div>
+                            <div class="field">&lpar; <input type="checkbox" id="aspect_sedimented" name="aspect_sedimented" value="sedimented"> &rpar; <label for="aspect_sedimented">Sedimentada</label></div>
+                            <div class="field">&lpar; <input type="checkbox" id="aspect_piurica" name="aspect_piurica" value="piurica"> &rpar; <label for="aspect_piurica">Piúrica</label></div>
+                        </fieldset>
+                    </fieldset>
+
+
+                    <!-- Campos para AVALIAÇÃO DA PELE -->
+                    <fieldset class="section full-width equivalent-width">
+                    <legend class="center-text small-title">AVALIAÇÃO DA PELE</legend>
+
+                        <!-- Campo para PELE -->
+                        <fieldset class="field small-text">
+                        <legend>PELE:</legend>
+                            <div class="field">&lpar; <input type="checkbox" id="intact_skin" name="intact_skin" value="intact"> &rpar; <label for="intact_skin">Íntegra</label></div>
+                            <div class="field">&lpar; <input type="checkbox" id="lesion_skin" name="lesion_skin" value="lesion"> &rpar; <label for="lesion_skin">Lesão</label></div>
+                            <div class="field">&lpar; <input type="checkbox" id="hyperemia_skin" name="hyperemia_skin" value="hyperemia"> &rpar; <label for="hyperemia_skin">Hiperemia</label></div>
+                            <div class="field">&lpar; <input type="checkbox" id="bruise_skin" name="bruise_skin" value="bruise"> &rpar; <label for="bruise_skin">Hematoma</label></div>
+                        </fieldset>
+
+                        <!-- Campo para LOCAL -->
+                        <fieldset class="field small-text">
+                        <legend>LOCAL:</legend>
+                            <div class="field"><label>Local:</label> <input type="text" class="text" id="local_skin" name="local_skin" size="25"></div>
+                            <div class="field">&lpar; <input type="checkbox" id="local_up_one" name="local_up_one" value="one"> &rpar; <label for="local_up_one">UP:</label> <label for="local_up_one_text">Local:</label> <input type="text" class="text" id="local_up_one_text" name="local_up_one_text" size="10"> <label for="stage_one">Estágio:</label> <input type="text" class="text" id="stage_one" name="stage_one" size="10"></div>
+                            <div class="field">&lpar; <input type="checkbox" id="local_up_two" name="local_up_two" value="two"> &rpar; <label for="local_up_two">UP:</label> <label for="local_up_two_text">Local:</label> <input type="text" class="text" id="local_up_two_text" name="local_up_two_text" size="10"> <label for="stage_two">Estágio:</label> <input type="text" class="text" id="stage_two" name="stage_two" size="10"></div>
+                        </fieldset>
+                        
+                        <!-- Campo para COLORAÇÃO -->
+                        <fieldset class="field small-text">   
+                        <legend>COLORAÇÃO:</legend>        
+                            <div class="field">&lpar; <input type="radio" id="skin_normal_coloring" name="coloration" value="normal"> &rpar; <label for="skin_normal_coloring">Normal</label></div>
+                            <div class="field">&lpar; <input type="radio" id="skin_icteric_staining" name="coloration" value="icteric"> &rpar; <label for="skin_icteric_staining">Ictérica</label></div>
+                            <div class="field">&lpar; <input type="radio" id="skin_cyanotic_color" name="coloration" value="cyanotic"> &rpar; <label for="skin_cyanotic_color">Cianótica</label></div>
+                            <div class="field">&lpar; <input type="radio" id="skin_pale_coloring" name="coloration" value="pale"> &rpar; <label for="skin_pale_coloring">Pálida</label></div>
+                        </fieldset>
+
+                        <!-- Campo para TURGOR -->
+                        <fieldset class="field small-text">   
+                        <legend>TURGOR:</legend>  
+                            <div class="field">&lpar; <input type="radio" id="normal_turgor" name="turgor" value="normal"> &rpar; <label for="normal_turgor">Normal</label></div>
+                            <div class="field">&lpar; <input type="radio" id="decreased_turgor" name="turgor" value="decressed"> &rpar; <label for="decreased_turgor">Diminuido</label></div>
+                        </fieldset>
+
+                        <!-- Campo para EDEMA -->
+                        <fieldset class="field small-text">   
+                        <legend>EDEMA:</legend>  
+                            <div class="field">&lpar; <input type="radio" id="edema_no" name="edema_color" value="no"> &rpar; <label for="edema_no">Não</label></div>
+                            <div class="field">&lpar; <input type="radio" id="edema_yes" name="edema_color" value="yes"> &rpar; <label for="edema_yes">Sim</label></div>
+                            <div class="field"><label for="edema_local">Local:</label> <input type="text" id="edema_local" class="text" name="edema_local" size="30"></div>
+                        </fieldset>
+                    </fieldset>
+                </div>
+
+                <!-- Campos para CATETERES -->
+                <fieldset class="section full-width">
+                <legend class="center-text small-title">CATETERES</legend>
+                    <div class="field small-text">&lpar; <input type="checkbox" id="intracath" name="intracath" value="intracath"> &rpar; <label for="intracath">Intracath - </label> 
+                        <label for="intracath_local"> Local: </label> <input type="text" class="text" id="intracath_local" name="intracath_local" size="15">
+                    </div>
+                    <div class="field small-text">&lpar; <input type="checkbox" id="venous_access" name="venous_access" value="venous_access"> &rpar; <label for="venous_access">Acesso Veneso Periférico - </label>
+                        <label for="venous_access_local"> Local: </label> <input type="text" class="text" id="venous_access_local" name="venous_access_local" size="15">
+                    </div>
+                    <div class="field small-text">&lpar; <input type="checkbox" id="probe_vesical" name="probe_vesical" value="probe_vesical"> &rpar; <label for="probe_vesical">Sonda Vesical de Demora</label></div>
+                </fieldset>
+
+                <!-- Campos para OUTRAS INFORMAÇÕES -->
+                <fieldset class="full-width">
+                    <legend class="center-text small-title">OUTRAS INFORMAÇÕES:</legend>
+                    <div class="div_field">
+                        <textarea rows="10" cols="100" id="other_information" name="other_information" ></textarea>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </form>
+    <script src="../_scripts/scripts_form2_print.js"></script>
+</body>
+</html>

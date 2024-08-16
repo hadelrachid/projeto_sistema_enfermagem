@@ -1,0 +1,112 @@
+/* Reset básico */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 10px;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+#logo_main {
+    display: flex;
+    margin: 20px;
+    float: left;
+}
+
+input[type="number"] {
+    width: 70px; /* Ajuste esta largura conforme necessário */
+}
+
+.div_head_unid {
+    margin: 10px;
+    text-align: center;
+    margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.div_head_unid h3 {
+    margin-right: 10px; /* Espaço entre o título e o campo de seleção */
+}
+
+.div_title_data {
+    display: flex;
+    align-items: center; /* Alinha verticalmente no centro */
+    justify-content: center; /* Centraliza horizontalmente os itens */
+}
+
+.title_sub {
+    flex: 1; /* Ocupa o espaço necessário e permite centralização */
+    text-align: center; /* Centraliza o texto dentro da div */
+}
+
+.div_unid{
+    margin: 20px;
+}
+
+.data_main {
+    margin-left: 50px; /* Espaço à esquerda */
+}
+
+/* Estilo do formulário */
+#form-anamnese {
+    margin-top: 20px;
+}
+
+legend{
+    font-weight: bold;
+    color: #363636;
+}
+
+#historic, #other_information{
+    resize: none;
+}
+
+.fieldset_option{
+    width: 100%;
+    display:inline-block;
+    margin: 5px;
+    border: 1px solid #ccc;  
+}
+
+.fieldset_option_section{
+    width: 100%;
+    background-color: #FFFFF0;
+    display:inline-block;
+    margin: 5px;
+    border: 1px solid #ccc;  
+}
+
+.legend_section{
+    font-weight: 900;
+    color: DarkRed;
+}
+
+.div_field{
+    display: inline-block;
+    margin: 10px;
+}
+
+.updateButton {
+    height: 55px;
+    font-size: 16px;
+    font-weight: bold;
+    border: solid 1px blue;
+    border-radius: 20px;
+    color: yellow;
+    background-color: darkblue;
+    transition: background-color 0.5s ease, color 0.5s ease, transform 0.5s ease;
+}
+.updateButton:hover {
+    background-color: blue;
+    color: white;
+    transform: scale(1.2);
+}
+.updateButton:pressed {
+    background-color: Indigo;
+    color: Lime;
+}

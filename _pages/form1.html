@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SISTEMATIZAÇÃO DA ASSISTÊNCIA DE ENFERMAGEM</title>
+    <link rel="stylesheet" type="text/css" href="../_css/styles_form1.css">
+</head>
+<body>
+    <!-- Imagem do Logo da Prefeitura --> 
+    <div id="logo_main">
+        <img src="../_image/logo.png" alt="Logo">
+    </div>
+
+     <!-- ============================================================================== -->
+     <!-- Formulário --> 
+    <form id="form-anamnese-1">
+        <!-- Cabeçalho com a seleção da Unidade --> 
+        <div class="div_head_unid">
+            <h3>SISTEMATIZAÇÃO DA ASSISTÊNCIA DE ENFERMAGEM</h3>
+            <p> - </p>
+            <select id="upa_selection" name="upa_selection">
+                <option value="">Select UPA</option>
+                <option value="upa-eugenio-de-melo">UPA EUGENIO DE MELO</option>
+                <option value="upa-novo-horizonte">UPA NOVO HORIZONTE</option>
+            </select>
+        </div>
+       
+        <!-- Cabeçalho com a data --> 
+        <div class="div_title_data">
+            <div class="title_sub">
+                <h2>HISTÓRICO DE ENFERMAGEM</h2>
+            </div>
+            <div class="data_main">
+                <input type="date" id="date_field" name="date_field" >
+            </div>
+        </div>
+
+        <!-- Campo para selecionar a Unidade --> 
+        <div class="div_unid">
+            <label for="unit">Unidade:</label>
+            <select id="unit" name="unit" >
+                <option value="">Select Unidade</option>
+                <option value="1">EUGÊNIO DE MELO</option>
+                <option value="2">NOVO HORIZONTE</option>
+            </select>
+        </div>
+        
+        <!-- ============================================================================== -->
+        <!-- Campos sobre Informações Pessoais --> 
+        <fieldset class="fieldset_option">
+            <legend>Informações pessoais: </legend>
+            <div class="div_field">
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" size="40">
+            </div>
+            <div class="div_field">
+                <label for="birth_date">Data de Nascimento:</label>
+                <input type="date" id="birth_date" name="birth_date" onchange="calcularIdade()"  >
+            </div>
+            <div class="div_field">
+                <label for="age">Idade:</label>
+                <input type="number" id="age" name="age" min="0" max="120">
+            </div>
+            <div class="div_field">
+                <label for="nationality">Nacionalidade:</label>
+                <select id="nationality" name="nationality" >
+                    <option value="brasileira" selected>Brasileira</option>
+                    <option value="estrangeira">Estrangeira</option>
+                </select>
+            </div>
+            <div class="div_field">
+                <label for="faa">FAA:</label>
+                <input type="text" id="faa" name="faa">
+            </div>
+            <div class="div_field">
+                <label for="sector">Setor:</label>
+                <input type="text" id="sector" name="sector">
+            </div>
+            <div class="div_field">
+                <label for="bed">Leito:</label>
+                <input type="text" id="bed" name="bed">
+            </div>
+        </fieldset>
+
+        <!-- ============================================================================== -->  
+        <!-- Campos sobre Hipótese Diagnóstica--> 
+        <fieldset class="fieldset_option">
+            <legend>Hipótese Diagnóstica:</legend>
+            <div class="div_field">
+                <input type="text" id="hypothesis" name="hypothesis" size="100">
+            </div>
+        </fieldset>
+
+        <!-- Campos sobre Queixas Principais -->
+        <fieldset class="fieldset_option">
+            <legend>Queixas Principais:</legend>
+            <div class="div_field">
+                <input type="text" id="complaints" name="complaints" size="100">
+            </div>
+        </fieldset>
+
+         <!-- Campos sobre Histórico de Chegada na Unidade -->
+        <fieldset class="fieldset_option">
+            <legend>Histórico de Chegada na Unidade:</legend>
+            <div class="div_field">
+                <textarea rows="5" cols="100" id="historic" name="historic"></textarea>
+            </div>
+        </fieldset>
+
+        <!-- Campos sobre Informações Clínicas Prévias -->
+        <fieldset class="fieldset_option">
+        <legend>Informações clínicas prévias:</legend>
+            <!-- Campos sobre Procedência -->
+            <fieldset class="fieldset_option">
+            <legend>1. Procedência:</legend>
+                <div class="div_field">
+                    <input type="radio" id="residence" name="provenance" value="residence">
+                    <label for="residence">Residência</label>
+                </div>
+                <div class="div_field">
+                    <input type="radio" id="samu" name="provenance" value="samu">
+                    <label for="samu">SAMU</label>
+                </div>
+                <div class="div_field">
+                    <input type="radio" id="esf" name="provenance" value="esf">
+                    <label for="esf">ESF</label>
+                </div>
+                <div class="div_field">
+                    <input type="radio" id="ubs" name="provenance" value="ubs">
+                    <label for="ubs">UBS</label>
+                </div>
+                <div class="div_field">
+                    <input type="radio" id="others" name="provenance" value="others">
+                    <label for="others">Outros</label>
+                </div>
+            </fieldset>
+
+            <!-- Campos sobre Tabagismo -->
+            <fieldset class="fieldset_option">
+            <legend>2. Tabagismo:</legend>
+                <div class="div_field">
+                    <input type="radio" id="smoking_yes" name="smoking" value="yes">
+                    <label for="smoking_yes">SIM</label>
+                </div>
+                <div class="div_field">
+                    <input type="radio" id="smoking_no" name="smoking" value="no">
+                    <label for="smoking_no">NÃO</label>
+                </div>
+                <div class="div_field">
+                    <label for="smoking_time">Se SIM, há quanto tempo?</label>
+                    <input type="text" id="smoking_time" name="smoking_time">
+                </div>
+            </fieldset>
+            <!-- Campos sobre Etilismo -->
+            <fieldset class="fieldset_option">
+            <legend>3. Etilismo:</legend>
+                <div class="div_field">
+                    <input type="radio" id="alcoholism_yes" name="alcoholism" value="yes">
+                    <label for="alcoholism_yes">SIM</label>
+                </div>
+                <div class="div_field">
+                    <input type="radio" id="alcoholism_no" name="alcoholism" value="no">
+                    <label for="alcoholism_no">NÃO</label>
+                </div>
+                <div class="div_field">
+                    <label for="alcoholism_time">Se SIM, há quanto tempo?</label>
+                    <input type="text" id="alcoholism_time" name="alcoholism_time" >
+                </div>
+            </fieldset>
+
+            <!-- Campos sobre Drogas Ilícitas -->
+            <fieldset class="fieldset_option">
+            <legend>4. Drogas Ilícitas:</legend>
+                <div class="div_field">
+                    <input type="radio" id="illicit_drugs_yes" name="illicit_drugs" value="yes">
+                    <label for="illicit_drugs_yes">SIM</label>
+                </div>
+                <div class="div_field">
+                    <input type="radio" id="illicit_drugs_no" name="illicit_drugs" value="no">
+                    <label for="illicit_drugs_no">NÃO</label>
+                </div>
+                <div class="div_field">
+                    <label for="illicit_drugs_time">Se SIM, há quanto tempo?</label>
+                    <input type="text" id="illicit_drugs_time" name="illicit_drugs_time" >
+                </div>
+            </fieldset>
+
+            <!-- Campos sobre Alergias -->
+            <fieldset class="fieldset_option">
+            <legend>5. Alergia:</legend>
+            <div class="div_field">
+                <input type="radio" id="allergy_what_yes" name="allergy_what" value="yes">
+                <label for="allergy-what-yes">SIM</label>
+            </div>
+            <div class="div_field">
+                <input type="radio" id="allergy_what_no" name="allergy_what" value="no">
+                <label for="allergy-what-no">NÃO</label>
+            </div>
+            <div class="div_field">
+                <label for="allergy_what_text">Se SIM, Qual?</label>
+                <input type="text" id="allergy_what_text" name="allergy_what_text" size="40">
+            </div>
+            </fieldset>
+        </fieldset>
+
+        <!-- Campos que indicam se hove Antecedentes -->
+        <fieldset class="fieldset_option">
+        <legend>Antecedentes</legend>
+            <fieldset class="fieldset_option">
+            <legend>1. Antecedentes Pessoais:</legend>
+                <div class="div_field">
+                    <input type="checkbox" id="dm" name="dm" value="dm">
+                    <label for="dm">DM</label>
+                </div>
+                <div class="div_field">
+                    <input type="checkbox" id="has" name="has" value="has">
+                    <label for="has">HAS</label>
+                </div>
+                <div class="div_field">
+                    <input type="checkbox" id="cardiopathy" name="cardiopathy" value="cardiopathy">
+                    <label for="cardiopathy">Cardiopatia</label>
+                </div>
+                <div class="div_field">
+                    <input type="checkbox" id="respiratory" name="respiratory" value="respiratory">
+                    <label for="respiratory">Respiratória</label>
+                </div>
+                <div class="div_field">
+                    <input type="checkbox" id="neurological" name="neurological" value="neurological">
+                    <label for="neurological">Neurológica</label>
+                </div>
+            </fieldset>
+
+            <!-- Campos que indicam se hove Cirurgia Anterior -->
+            <fieldset class="fieldset_option">
+            <legend>2. Cirurgia Anterior:</legend>
+            <div class="div_field">
+                <input type="radio" id="previous_surgery_yes" name="previous_surgery" value="yes">
+                <label for="previous_surgery_yes">SIM</label>
+            </div>
+            <div class="div_field">
+                <input type="radio" id="previous_surgery_no" name="previous_surgery" value="no">
+                <label for="previous_surgery_no">NÃO</label>
+            </div>
+            <div class="div_field">
+                <label for="previous_surgery_which">Se SIM, qual?</label>
+                <input type="text" id="previous_surgery_which" name="previous_surgery_which" size="60">
+            </div>
+            </fieldset>
+        </fieldset>
+
+        <!-- Campos que indicam se hove Medicações em uso -->
+        <fieldset class="fieldset_option">
+        <legend>Medicações em uso:</legend>
+            <div class="div_field">
+                <input type="radio" id="medication_use_yes" name="medication_use" value="yes">
+                <label for="medication_use_yes">SIM</label>
+            </div>
+            <div class="div_field">
+                <input type="radio" id="medication_use_no" name="medication_use" value="no">
+                <label for="medication_use_no">NÃO</label>
+            </div>
+            <div class="div_field">
+                <label for="medication_use_which">Se SIM, qual?</label>
+                <input type="text" id="medication_use_which" name="medication_use_which" size="40">
+            </div>
+        </fieldset>
+
+         <!-- Campos que indicam se hove Proteção da Coluna Cervical -->
+         <fieldset class="fieldset_option">
+        <legend>Proteção da Coluna Cervical:</legend>
+            <div class="div_field">
+                <input type="checkbox" id="neck_brace" name="neck_brace" value="eck_brace">
+                <label for="neck_brace">Colar Cervical</label>
+            </div>
+            <div class="div_field">
+                <input type="checkbox" id="side_head_protector" name="side_head_protector" value="side_head_protector">
+                <label for="side_head_protector">Protetor Lateral da Cabeça</label>
+            </div>
+            <div class="div_field">
+                <input type="checkbox" id="rigid_patient_board" name="rigid_patient_board" value="rigid_patient_board">
+                <label for="rigid_patient_board">Em Prancha Rígida</label>
+            </div>
+        </fieldset>
+
+        <!-- Campos para saber sobre Responsável pelas informações -->
+        <fieldset class="fieldset_option">
+        <legend>Responsável pelas informações:</legend>
+            <div class="div_field">
+                <input type="radio" id="patient_responsible" name="id_responsible" value="patient_responsible">
+                <label for="patient_responsible">Paciente</label>
+            </div>
+            <div class="div_field">
+                <input type="radio" id="responsible_companion" name="id_responsible" value="responsible_companion">
+                <label for="responsible-companion">Acompanhante</label>
+            </div>
+            <div class="div_field">
+                <label for="responsible_name">Nome:</label>
+                <input type="text" id="responsible_name" name="responsible_name">
+            </div>
+            <div class="div_field">
+                <label for="kinship">Grau de parentesco com o Paciente:</label>
+                 <select id="kinship" name="kinship" >
+                    <option value="spouse">Cônjuge</option>
+                    <option value="sister_in_law">Cunhada</option>
+                    <option value="brother_in_law">Cunhado</option>
+                    <option value="stepson">Enteado</option>
+                    <option value="daughter">Filha</option>
+                    <option value="son">Filho</option>
+                    <option value="genre">Genro</option>
+                    <option value="sister">Irmã</option>
+                    <option value="brother">Irmão</option>
+                    <option value="mother">Mãe</option>
+                    <option value="grand_son">Neto</option>
+                    <option value="grand_daugther">Neta</option>
+                    <option value="daughter_in_law">Nora</option>
+                    <option value="father">Pai</option>
+                    <option value="cousin_she">Prima</option>
+                    <option value="cousin_he">Primo</option>
+                    <option value="unrelated" selected>Sem Parentesco</option>
+                    <option value="father_in_law">Sogro</option>
+                    <option value="mother_in_law">Sogra</option>
+                    <option value="niece">Sobrinha</option>
+                    <option value="nephew">Sobrinho</option>
+                    <option value="aunt">Tia</option>
+                    <option value="uncle">Tio</option>
+                </select>
+            </div>
+        </fieldset>
+        <fieldset class="fieldset_option">
+        <legend>Outras Informações:</legend>
+            <div class="div_field">
+                <textarea rows="10" cols="100" id="other_information" name="other_information"></textarea>
+            </div>
+        </fieldset>
+    </form>
+    <!-- scripts -->
+    <script src="../_scripts/scripts_form1.js"></script>
+</body>
+</html>
+

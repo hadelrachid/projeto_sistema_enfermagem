@@ -1,0 +1,15 @@
+pyinstaller --onefile --windowed \
+    --add-data "_pages;_pages" \
+    --add-data "_css;_css" \
+    --add-data "_image;_image" \
+    --add-data "_scripts;_scripts" \
+    --add-data "_models_print;_models_print" \
+    main.py
+
+
+=========================================================================================
+zip -r projeto_sistema_enfermagem.zip dist/
+
+Pacote ZIP:
+Crie um pacote ZIP que inclui o executável e todas as pastas necessárias. 
+Isso facilitará a distribuição para os usuários finais
