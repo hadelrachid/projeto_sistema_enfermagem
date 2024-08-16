@@ -10,6 +10,7 @@ O aplicativo foi desenvolvido como um protótipo na linguagem Python, utilizando
 
 A estrutura do projeto é organizada da seguinte forma:
 
+```
 projeto/
 ├── database.py # Gerenciamento do banco de dados SQLite
 ├── dist.py # Script para gerar o executável do projeto
@@ -49,6 +50,7 @@ projeto/
 ├── anotacoes # Anotações e outros arquivos auxiliares
 ├── pycache # Arquivos compilados do Python
 
+```
 
 ## Funcionalidades
 
